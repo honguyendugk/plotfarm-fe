@@ -1,4 +1,60 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+@theme {
+  --font-display: "Quicksand", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --color-farm-50: #f2faf1;
+  --color-farm-100: #dff3dc;
+  --color-farm-200: #bce6b6;
+  --color-farm-300: #8fd386;
+  --color-farm-400: #62bd58;
+  --color-farm-500: #3fa236;
+  --color-farm-600: #2f8428;
+  --color-farm-700: #276a23;
+  --color-farm-800: #22541f;
+  --color-farm-900: #1c451c;
+
+  --color-soil-100: #f5efe6;
+  --color-soil-200: #e6d5b8;
+  --color-soil-500: #a97a4b;
+  --color-soil-700: #6b4a2c;
+
+  --animate-sway: sway 4s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-grow: grow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-fade-up: fade-up 0.7s ease-out both;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-drift: drift 18s linear infinite;
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes grow {
+    0% { transform: scaleY(0.3) scaleX(0.7); opacity: 0; }
+    100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+  }
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes drift {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-24px) translateY(10px); }
+    100% { transform: translateX(0) translateY(0); }
+  }
+}
 
 html,
 body,
@@ -8,5 +64,21 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--color-farm-50);
+  color: #1f2a1e;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+/* soft dotted "plot grid" texture used behind content areas */
+.bg-plot-grid {
+  background-image: radial-gradient(circle, rgba(63, 162, 54, 0.16) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+.origin-bottom {
+  transform-origin: bottom center;
 }

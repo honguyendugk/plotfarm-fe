@@ -5,8 +5,12 @@ import { useAuth } from "../../context/AuthContext";
 import { extractErrorMessage } from "../../utils/errors";
 
 const STRENGTH_LABELS = ["Yếu", "Trung bình", "Khá", "Mạnh"];
-const STRENGTH_COLORS = ["bg-red-400", "bg-amber-400", "bg-lime-500", "bg-emerald-500"];
+const STRENGTH_COLORS = ["bg-red-400", "bg-amber-400", "bg-lime-500", "bg-farm-500"];
 const VN_PHONE_REGEX = /^(0|\+84)(3|5|7|8|9)\d{8}$/;
+
+const inputClass =
+  "w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-800 shadow-sm transition-all duration-200 focus:border-farm-400 focus:outline-none focus:ring-4 focus:ring-farm-100";
+const labelClass = "mb-1.5 block text-sm font-medium text-gray-700";
 
 function passwordStrength(password: string): number {
   if (password.length === 0) return -1;
@@ -75,56 +79,60 @@ function RegisterPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-gray-900">Đăng ký</h1>
+      <div className="mb-6 text-center">
+        <span className="text-3xl">🌻</span>
+        <h1 className="font-display mt-1 text-2xl font-bold text-farm-800">Tạo tài khoản mới</h1>
+        <p className="mt-1 text-sm text-gray-500">Gia nhập PlotFarm và bắt đầu vụ mùa của riêng bạn.</p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Tên đăng nhập</label>
+          <label className={labelClass}>Tên đăng nhập</label>
           <input
             type="text"
             required
             minLength={3}
             value={form.username}
             onChange={update("username")}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+            className={inputClass}
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Họ và tên</label>
+          <label className={labelClass}>Họ và tên</label>
           <input
             type="text"
             required
             value={form.fullName}
             onChange={update("fullName")}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+            className={inputClass}
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Email</label>
+          <label className={labelClass}>Email</label>
           <input
             type="email"
             required
             value={form.email}
             onChange={update("email")}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+            className={inputClass}
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Số điện thoại</label>
+          <label className={labelClass}>Số điện thoại</label>
           <input
             type="tel"
             required
             placeholder="0912345678"
             value={form.phone}
             onChange={update("phone")}
-            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+            className={inputClass}
           />
           <p className="mt-1 text-xs text-gray-400">
             Mã OTP xác thực tài khoản sẽ được gửi tới số này.
           </p>
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Mật khẩu</label>
+          <label className={labelClass}>Mật khẩu</label>
           <PasswordInput
             required
             minLength={6}
@@ -137,7 +145,7 @@ function RegisterPage() {
                 {STRENGTH_COLORS.map((color, i) => (
                   <div
                     key={color}
-                    className={`h-1.5 flex-1 rounded-full ${i <= strength ? color : "bg-gray-200"}`}
+                    className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${i <= strength ? color : "bg-gray-200"}`}
                   />
                 ))}
               </div>
@@ -146,7 +154,7 @@ function RegisterPage() {
           )}
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Nhập lại mật khẩu</label>
+          <label className={labelClass}>Nhập lại mật khẩu</label>
           <PasswordInput
             required
             minLength={6}
@@ -155,12 +163,14 @@ function RegisterPage() {
           />
         </div>
 
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && (
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
+        )}
 
         <button
           type="submit"
           disabled={loading}
-          className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-60"
+          className="w-full rounded-xl bg-farm-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-farm-700 hover:shadow-md disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {loading ? "Đang đăng ký..." : "Đăng ký"}
         </button>
@@ -168,7 +178,7 @@ function RegisterPage() {
 
       <p className="mt-6 text-center text-sm text-gray-500">
         Đã có tài khoản?{" "}
-        <Link to="/login" className="font-medium text-emerald-600">
+        <Link to="/login" className="font-medium text-farm-600 hover:text-farm-700 hover:underline">
           Đăng nhập
         </Link>
       </p>

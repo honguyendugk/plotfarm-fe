@@ -23,13 +23,13 @@ function PasswordInput(props: InputHTMLAttributes<HTMLInputElement>) {
       <input
         {...props}
         type={visible ? "text" : "password"}
-        className={`w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-sm focus:border-emerald-500 focus:outline-none ${props.className || ""}`}
+        className={`w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 pr-10 text-sm text-gray-800 shadow-sm transition-all duration-200 focus:border-farm-400 focus:outline-none focus:ring-4 focus:ring-farm-100 ${props.className || ""}`}
       />
       <button
         type="button"
         onClick={() => setVisible((v) => !v)}
         aria-label={visible ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
-        className="absolute inset-y-0 right-2 flex items-center text-gray-400 hover:text-gray-600"
+        className="absolute inset-y-0 right-2 flex items-center text-gray-400 transition-colors hover:text-farm-600"
       >
         <EyeIcon off={visible} />
       </button>

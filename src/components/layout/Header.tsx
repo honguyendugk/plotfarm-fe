@@ -11,16 +11,21 @@ function Header() {
   };
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
-      <Link to="/" className="text-xl font-semibold text-emerald-600">
-        PlotFarm
+    <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-farm-100 bg-white/80 px-6 backdrop-blur-md">
+      <Link to="/" className="group flex items-center gap-2 text-xl font-semibold text-farm-700">
+        <span className="inline-block origin-bottom text-2xl transition-transform duration-300 group-hover:animate-sway">
+          🌱
+        </span>
+        <span className="font-display tracking-tight">PlotFarm</span>
       </Link>
       <nav className="flex items-center gap-6 text-sm font-medium text-gray-600">
-        <Link to="/farms" className="hover:text-emerald-600">
+        <Link to="/farms" className="group relative py-1 hover:text-farm-700">
           Farm / Plot
+          <span className="absolute inset-x-0 -bottom-0.5 h-0.5 scale-x-0 bg-farm-500 transition-transform duration-300 group-hover:scale-x-100" />
         </Link>
-        <Link to="/my-plots" className="hover:text-emerald-600">
+        <Link to="/my-plots" className="group relative py-1 hover:text-farm-700">
           Ô đất của tôi
+          <span className="absolute inset-x-0 -bottom-0.5 h-0.5 scale-x-0 bg-farm-500 transition-transform duration-300 group-hover:scale-x-100" />
         </Link>
 
         {isAuthenticated ? (
@@ -29,19 +34,20 @@ function Header() {
             <button
               type="button"
               onClick={handleLogout}
-              className="rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-50"
+              className="rounded-full border border-gray-300 px-4 py-2 transition-colors duration-200 hover:border-farm-300 hover:bg-farm-50 hover:text-farm-700"
             >
               Đăng xuất
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="hover:text-emerald-600">
+            <Link to="/login" className="group relative py-1 hover:text-farm-700">
               Đăng nhập
+              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 scale-x-0 bg-farm-500 transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
             <Link
               to="/register"
-              className="rounded-md bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700"
+              className="rounded-full bg-farm-600 px-4 py-2 text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-farm-700 hover:shadow-md"
             >
               Đăng ký
             </Link>

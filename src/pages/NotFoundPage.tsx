@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
+import PageHeader from "../components/common/PageHeader";
 
 function NotFoundPage() {
   return (
     <div>
-      <h1 className="text-xl font-semibold text-gray-900">
-        404 — Không tìm thấy trang
-      </h1>
-      <Link to="/" className="mt-2 inline-block text-emerald-600">
+      <PageHeader
+        icon="🐓"
+        title="404 — Không tìm thấy trang"
+        subtitle="Có vẻ bạn đã đi lạc ra ngoài ranh giới nông trại."
+        tone="soil"
+      />
+      <Link to="/" className="inline-block text-farm-700 hover:underline">
         Về trang chủ
       </Link>
     </div>
