@@ -7,14 +7,9 @@ import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
 import VerifyPhonePage from "../pages/auth/VerifyPhonePage";
-import FarmListPage from "../pages/farm/FarmListPage";
-import PlotDetailPage from "../pages/farm/PlotDetailPage";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import UnauthorizedPage from "../pages/UnauthorizedPage";
-import MyPlotsPage from "../pages/rental/MyPlotsPage";
-import RentPlotPage from "../pages/rental/RentPlotPage";
-import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
   return (
@@ -30,14 +25,9 @@ function AppRoutes() {
 
       <Route element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="farms" element={<FarmListPage />} />
-        <Route path="farms/plots/:plotId" element={<PlotDetailPage />} />
         <Route path="unauthorized" element={<UnauthorizedPage />} />
 
-        <Route element={<ProtectedRoute />}>
-          <Route path="rent" element={<RentPlotPage />} />
-          <Route path="my-plots" element={<MyPlotsPage />} />
-        </Route>
+        {/* TODO: farms/rent/my-plots routes re-added once Task 3 (Farm/Rental pages) is pushed */}
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>
